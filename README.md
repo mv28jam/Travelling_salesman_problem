@@ -8,8 +8,11 @@ Travelling salesman problem TCP
 Задача коммивояжера
 - решение методом ближайшего
 - варианты расчёта для Земли реальной сферической
-- вариант расчёта для плоскоземельцев 
+- вариант расчёта для плоскоземельцев
+- не оптимальный путь
+- возвращение в исходную точку 
 
+```php
 Example of use 
 //create
 $way= (new TravellProblem)->init();
@@ -21,3 +24,4 @@ $way->setPoints(['k'=>[1,2], [5,10], 't'=>[4,4], [5,16]]);
 var_dump($way->go());
 //other format
 var_dump($way->getResultAsIs());
+```
