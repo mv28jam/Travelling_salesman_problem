@@ -13,12 +13,13 @@ Travelling salesman problem TCP
 - возвращение в исходную точку 
 
 ```php
-Example of use 
+//Example of use 
 //create
 $way= (new TravellProblem)->init();
 //set style flat Earth
 $way->setCountFlat();
-//set points 
+//set points
+//Exception here 
 $way->setPoints(['k'=>[1,2], [5,10], 't'=>[4,4], [5,16]]);
 //count and get result
 var_dump($way->go());
