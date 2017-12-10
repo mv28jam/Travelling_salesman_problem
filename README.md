@@ -23,6 +23,14 @@ $way->setCountFlat();
 $way->setPoints(['k'=>[1,2], [5,10], 't'=>[4,4], [5,16]]);
 //count and get result
 var_dump($way->go());
+/*
+array(2) {
+  [0] =>
+  string(9) "k/t/0/1/k"
+  [1] =>
+  double(36.762038412088)
+}
+*/
 //other format
 var_dump($way->getResultAsIs());
 ```
