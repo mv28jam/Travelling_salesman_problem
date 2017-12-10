@@ -11,7 +11,7 @@ class TravellProblem implements TravellInterface {
     //array of points
     public $points=[];//;
     //count like flat
-    public $countFlat=true;
+    public $countFlat=false;
     //delim points name
     protected $delimiter='/';
     //
