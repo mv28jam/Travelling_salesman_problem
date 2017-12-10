@@ -9,9 +9,9 @@ class TravellProblem implements TravellInterface {
     //meter
     const EARTH_RADIUS=6372795;
     //array of points
-    public $points=[];//;
+    protected $points=[];//;
     //count like flat
-    public $countFlat=false;
+    protected $countFlat=false;
     //delim points name
     protected $delimiter='/';
     //
@@ -206,9 +206,5 @@ class TravellProblem implements TravellInterface {
     {
         $this->countFlat=true;
         return true;
-    }
-    
-    
-    
-   
+    } 
 }
