@@ -171,9 +171,8 @@ class TravellProblem implements TravellInterface {
         if($this->checkLen($points)){
             $this->points=$points;
             return true;
-        }else{
-            return false;
         }
+        return false;
     }
     
     /*
