@@ -71,38 +71,37 @@ class TravellProblem implements TravellInterface
      */
     protected function nextSearch(array $dots, $start):void
     {
-        //check for 
-        if(!$this->checkLen($dots)){
-            return;
-        }
-        //dist array
-        $dists = [];
-        //empty way  =  start of
-        if(empty($this->way)){
-            $this->way[] = $start;
-        }
-        //goto count
-        foreach($dots as $key => $val){
-            if($key !== $start){ 
-                $dists[$key] = $this->distFlat($dots[$start], $val);
+        //check for min len
+        if($this->checkLen($dots)){
+            //dist array
+            $dists = [];
+            //empty way  =  start of
+            if(empty($this->way)){
+                $this->way[] = $start;
             }
-        }
-        //sort to find closest
-        asort($dists);
-        //next closest point
-        $next = key($dists);
-        //save point of way
-        $this->way[] = $next;
-        $this->dist[] = $dists[$next];
-        //delete included dots
-        unset($dots[$start]);
-        //if 2 or more variants recursive
-        //if no goto first point
-        if(count($dots) > 1){
-            $this->nextSearch($dots, $next);
-        }else{
-            $this->way[] = key($this->points);
-            $this->dist[] = $this->distFlat(reset($this->points),reset($dots));    
+            //goto count
+            foreach($dots as $key => $val){
+                if($key !== $start){ 
+                    $dists[$key] = $this->distFlat($dots[$start], $val);
+                }
+            }
+            //sort to find closest
+            asort($dists);
+            //next closest point
+            $next = key($dists);
+            //save point of way
+            $this->way[] = $next;
+            $this->dist[] = $dists[$next];
+            //delete included dots
+            unset($dots[$start]);
+            //if 2 or more variants recursive
+            //if no goto first point
+            if(count($dots) > 1){
+                $this->nextSearch($dots, $next);
+            }else{
+                $this->way[] = key($this->points);
+                $this->dist[] = $this->distFlat(reset($this->points),reset($dots));    
+            }
         }
         //
     }
