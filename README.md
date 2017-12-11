@@ -12,6 +12,11 @@ Travelling salesman problem TCP
 - не оптимальный путь
 - возвращение в исходную точку 
 
+#php 7.1 
+- void do not return null
+- typization
+
+#Example
 ```php
 //Example of use 
 //create

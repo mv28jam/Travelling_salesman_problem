@@ -6,8 +6,13 @@
 
 /**
  * Description of TravellInterface
+ * 
+ * Travell have to has 
+ * points setPoints()
+ * and 
+ * path go()
  *
- * @author mv28jam
+ * @author mv28jam <mv28jam@yandex.ru>
  */
 interface TravellInterface {
     /*

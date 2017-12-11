@@ -2,8 +2,15 @@
 
 /**
  * Description of TravellProblem
+ * 
+ * Travelling salesman problem
+ * Nearest Neighbour algorithm
+ * 
+ * Count variants
+ * -earth
+ * -flat
  *
- * @author mv28jam
+ * @author mv28jam <mv28jam@yandex.ru>
  */
 class TravellProblem implements TravellInterface {
     //meter
@@ -14,7 +21,10 @@ class TravellProblem implements TravellInterface {
     protected $countFlat=false;
     //delim points name
     protected $delimiter='/';
-    //
+    /*
+     * way array of points to go
+     * dist array od distance len= len(way)-2
+     */
     protected $way=[];
     protected $dist=[];
     
@@ -56,6 +66,7 @@ class TravellProblem implements TravellInterface {
      * @param array $dots 
      * @param mixed $start start key in array
      * @return void
+     * @throws Exception from this->checkLen
      */
     protected function nextSearch(array $dots, $start):void
     {
@@ -126,7 +137,8 @@ class TravellProblem implements TravellInterface {
      * @author Михаил Кобзарев <mikhail@kobzarev.com>
      * @return float
      */
-    function distEarth (array $a, array $b):float {
+    function distEarth (array $a, array $b):float 
+    {
         $φA=$a[0]; 
         $λA=$a[1]; 
         $φB=$b[0]; 
@@ -155,7 +167,8 @@ class TravellProblem implements TravellInterface {
      * @return bool true expected
      * @throws Exception 
      */
-    protected function checkLen(array $dots):bool{
+    protected function checkLen(array $dots):bool
+    {
         if(count($dots)<2){
             throw new Exception('Can not count - less then 2 points');  
         }
@@ -165,6 +178,7 @@ class TravellProblem implements TravellInterface {
     /*
      * @param array $points
      * @return bool 
+     * @throws Exception from this->checkLen
      */
     public function setPoints(array $points):bool
     {
