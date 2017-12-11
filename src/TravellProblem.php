@@ -79,7 +79,7 @@ class TravellProblem implements TravellInterface
         //goto count
         foreach($dots as $key => $val){
             if($key !== $start){ 
-                $dists[$key] = $this->distFlat($dots[$start], $val);
+                $dists[$key] = $this->distansion($dots[$start], $val);
             }
         }
         //sort to find closest
@@ -97,7 +97,7 @@ class TravellProblem implements TravellInterface
             $this->closerSearch($dots, $next);
         }else{
             $this->way[] = key($this->points);
-            $this->dist[] = $this->distFlat(reset($this->points),reset($dots));    
+            $this->dist[] = $this->distansion(reset($this->points),reset($dots));    
         }
         //
     }
@@ -108,7 +108,7 @@ class TravellProblem implements TravellInterface
      * @return float
      * proxy function 
      */
-    protected function dist(array $a, array $b):float
+    protected function distansion(array $a, array $b):float
     {
         if($this->countFlat){
             return $this->distFlat($a, $b);
