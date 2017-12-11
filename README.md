@@ -38,4 +38,32 @@ array(2) {
 */
 //other format
 var_dump($way->getResultAsIs());
+/*
+array(2) {
+  [0] =>
+  array(5) {
+    [0] =>
+    string(1) "k"
+    [1] =>
+    string(1) "t"
+    [2] =>
+    int(0)
+    [3] =>
+    int(1)
+    [4] =>
+    string(1) "k"
+  }
+  [1] =>
+  array(4) {
+    [0] =>
+    double(5.3851648071345)
+    [1] =>
+    double(10.816653826392)
+    [2] =>
+    double(6)
+    [3] =>
+    double(14.560219778561)
+  }
+}
+*/
 ```

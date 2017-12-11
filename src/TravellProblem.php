@@ -49,7 +49,7 @@ class TravellProblem implements TravellInterface
         //goto first element
         reset($this->points);
         //count
-        $this->nextSearch($this->points, key($this->points));
+        $this->closerSearch($this->points, key($this->points));
         //
         return [implode($this->delimiter, $this->way), array_sum($this->dist)];   
     }
@@ -69,39 +69,36 @@ class TravellProblem implements TravellInterface
      * @return void
      * @throws Exception from this->checkLen
      */
-    protected function nextSearch(array $dots, $start):void
+    private function closerSearch(array $dots, $start):void
     {
-        //check for min len
-        if($this->checkLen($dots)){
-            //dist array
-            $dists = [];
-            //empty way  =  start of
-            if(empty($this->way)){
-                $this->way[] = $start;
+        //dist array
+        $dists = [];
+        //empty way  =  start of
+        if(empty($this->way)){
+            $this->way[] = $start;
+        }
+        //goto count
+        foreach($dots as $key => $val){
+            if($key !== $start){ 
+                $dists[$key] = $this->distFlat($dots[$start], $val);
             }
-            //goto count
-            foreach($dots as $key => $val){
-                if($key !== $start){ 
-                    $dists[$key] = $this->distFlat($dots[$start], $val);
-                }
-            }
-            //sort to find closest
-            asort($dists);
-            //next closest point
-            $next = key($dists);
-            //save point of way
-            $this->way[] = $next;
-            $this->dist[] = $dists[$next];
-            //delete included dots
-            unset($dots[$start]);
-            //if 2 or more variants recursive
-            //if no goto first point
-            if(count($dots) > 1){
-                $this->nextSearch($dots, $next);
-            }else{
-                $this->way[] = key($this->points);
-                $this->dist[] = $this->distFlat(reset($this->points),reset($dots));    
-            }
+        }
+        //sort to find closest
+        asort($dists);
+        //next closest point
+        $next = key($dists);
+        //save point of way
+        $this->way[] = $next;
+        $this->dist[] = $dists[$next];
+        //delete included dots
+        unset($dots[$start]);
+        //if 2 or more variants recursive
+        //if no goto first point
+        if(count($dots) > 1){
+            $this->closerSearch($dots, $next);
+        }else{
+            $this->way[] = key($this->points);
+            $this->dist[] = $this->distFlat(reset($this->points),reset($dots));    
         }
         //
     }
@@ -126,7 +123,7 @@ class TravellProblem implements TravellInterface
      * @param array $b dots coord
      * @return float 
      */
-    public function distFlat(array $a, array $b):float
+    protected function distFlat(array $a, array $b):float
     {
         return sqrt(pow(abs($a[0] - $b[0]), 2) + pow(abs($a[1] - $b[1]), 2));      
     }
@@ -137,7 +134,7 @@ class TravellProblem implements TravellInterface
      * @author Михаил Кобзарев <mikhail@kobzarev.com>
      * @return float
      */
-    function distEarth (array $a, array $b):float 
+    protected function distEarth (array $a, array $b):float 
     {
         $φA = $a[0]; 
         $λA = $a[1]; 
