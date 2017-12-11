@@ -12,21 +12,22 @@
  *
  * @author mv28jam <mv28jam@yandex.ru>
  */
-class TravellProblem implements TravellInterface {
+class TravellProblem implements TravellInterface 
+{
     //meter
-    const EARTH_RADIUS=6372795;
+    const EARTH_RADIUS = 6372795;
     //array of points
-    protected $points=[];//;
+    protected $points = [];//;
     //count like flat
-    protected $countFlat=false;
+    protected $countFlat = false;
     //delim points name
-    protected $delimiter='/';
+    protected $delimiter = '/';
     /*
      * way array of points to go
-     * dist array od distance len= len(way)-2
+     * dist array od distance len =  len(way)-2
      */
-    protected $way=[];
-    protected $dist=[];
+    protected $way = [];
+    protected $dist = [];
     
     /*
      * @param void
@@ -34,8 +35,8 @@ class TravellProblem implements TravellInterface {
      */
     public function init(): TravellProblem 
     {
-        $this->way=[];
-        $this->dist=[];
+        $this->way = [];
+        $this->dist = [];
         return $this;
     }
     
@@ -71,37 +72,37 @@ class TravellProblem implements TravellInterface {
     protected function nextSearch(array $dots, $start):void
     {
         //check for 
-        if(count($dots)<2){
-            throw new Exception('less then 2 points');
+        if(!$this->checkLen($dots)){
+            return;
         }
         //dist array
-        $dists=[];
-        //empty way = start of
+        $dists = [];
+        //empty way  =  start of
         if(empty($this->way)){
-            $this->way[]=$start;
+            $this->way[] = $start;
         }
         //goto count
         foreach($dots as $key => $val){
-            if($key!==$start){ 
-                $dists[$key]=$this->distFlat($dots[$start],$val);
+            if($key !== $start){ 
+                $dists[$key] = $this->distFlat($dots[$start], $val);
             }
         }
         //sort to find closest
         asort($dists);
         //next closest point
-        $next=key($dists);
+        $next = key($dists);
         //save point of way
-        $this->way[]=$next;
-        $this->dist[]=$dists[$next];
+        $this->way[] = $next;
+        $this->dist[] = $dists[$next];
         //delete included dots
         unset($dots[$start]);
         //if 2 or more variants recursive
         //if no goto first point
-        if(count($dots)>1){
+        if(count($dots) > 1){
             $this->nextSearch($dots, $next);
         }else{
-            $this->way[]=key($this->points);
-            $this->dist[]=$this->distFlat(reset($this->points),reset($dots));    
+            $this->way[] = key($this->points);
+            $this->dist[] = $this->distFlat(reset($this->points),reset($dots));    
         }
         //
     }
@@ -128,7 +129,7 @@ class TravellProblem implements TravellInterface {
      */
     public function distFlat(array $a, array $b):float
     {
-        return sqrt(pow(abs($a[0]-$b[0]),2) + pow(abs($a[1]-$b[1]),2));      
+        return sqrt(pow(abs($a[0] - $b[0]), 2) + pow(abs($a[1] - $b[1]), 2));      
     }
 
     /*
@@ -139,25 +140,25 @@ class TravellProblem implements TravellInterface {
      */
     function distEarth (array $a, array $b):float 
     {
-        $φA=$a[0]; 
-        $λA=$a[1]; 
-        $φB=$b[0]; 
-        $λB=$b[1];
-        $lat1 = $φA * M_PI / 180;
-        $lat2 = $φB * M_PI / 180;
-        $long1 = $λA * M_PI / 180;
-        $long2 = $λB * M_PI / 180;
-        $cl1 = cos($lat1);
-        $cl2 = cos($lat2);
-        $sl1 = sin($lat1);
-        $sl2 = sin($lat2);
-        $delta = $long2 - $long1;
-        $cdelta = cos($delta);
-        $sdelta = sin($delta);
-        $y = sqrt(pow($cl2 * $sdelta, 2) + pow($cl1 * $sl2 - $sl1 * $cl2 * $cdelta, 2));
-        $x = $sl1 * $sl2 + $cl1 * $cl2 * $cdelta;
-        $ad = atan2($y, $x);
-        $dist = $ad * TravellProblem::EARTH_RADIUS;
+        $φA = $a[0]; 
+        $λA = $a[1]; 
+        $φB = $b[0]; 
+        $λB = $b[1];
+        $lat1  =  $φA * M_PI / 180;
+        $lat2  =  $φB * M_PI / 180;
+        $long1  =  $λA * M_PI / 180;
+        $long2  =  $λB * M_PI / 180;
+        $cl1  =  cos($lat1);
+        $cl2  =  cos($lat2);
+        $sl1  =  sin($lat1);
+        $sl2  =  sin($lat2);
+        $delta  =  $long2 - $long1;
+        $cdelta  =  cos($delta);
+        $sdelta  =  sin($delta);
+        $y  =  sqrt(pow($cl2 * $sdelta, 2) + pow($cl1 * $sl2 - $sl1 * $cl2 * $cdelta, 2));
+        $x  =  $sl1 * $sl2 + $cl1 * $cl2 * $cdelta;
+        $ad  =  atan2($y, $x);
+        $dist  =  $ad * TravellProblem::EARTH_RADIUS;
         return $dist;
     }
     
@@ -169,7 +170,7 @@ class TravellProblem implements TravellInterface {
      */
     protected function checkLen(array $dots):bool
     {
-        if(count($dots)<2){
+        if(count($dots) < 2){
             throw new Exception('Can not count - less then 2 points');  
         }
         return true;
@@ -183,7 +184,7 @@ class TravellProblem implements TravellInterface {
     public function setPoints(array $points):bool
     {
         if($this->checkLen($points)){
-            $this->points=$points;
+            $this->points = $points;
             return true;
         }
         return false;
@@ -196,7 +197,7 @@ class TravellProblem implements TravellInterface {
     public function setDelim(string $delim):bool
     {
         if(!empty($delim)){
-            $this->delimiter=$delim;
+            $this->delimiter = $delim;
             return true;
         }
         return false;
@@ -208,7 +209,7 @@ class TravellProblem implements TravellInterface {
      */
     public function setCountEarth():bool
     {
-        $this->countFlat=false;
+        $this->countFlat = false;
         return true;
     }
     
@@ -218,7 +219,7 @@ class TravellProblem implements TravellInterface {
      */
     public function setCountFlat():bool
     {
-        $this->countFlat=true;
+        $this->countFlat = true;
         return true;
     } 
 }

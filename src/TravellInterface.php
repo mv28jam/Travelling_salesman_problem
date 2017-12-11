@@ -14,7 +14,8 @@
  *
  * @author mv28jam <mv28jam@yandex.ru>
  */
-interface TravellInterface {
+interface TravellInterface 
+{
     /*
      * @param void
      * @return array result of count
