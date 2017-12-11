@@ -67,7 +67,6 @@ class TravellProblem implements TravellInterface
      * @param array $dots 
      * @param mixed $start start key in array
      * @return void
-     * @throws Exception from this->checkLen
      */
     private function closerSearch(array $dots, $start):void
     {
