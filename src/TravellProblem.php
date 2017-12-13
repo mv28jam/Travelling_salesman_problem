@@ -43,14 +43,16 @@ class TravellProblem implements TravellInterface
     /*
      * @param void
      * @return array final result
+     * @throws Exception from this->checkLen
      */
     public function go():array
     {
-        //goto first element
-        reset($this->points);
-        //count
-        $this->closerSearch($this->points, key($this->points));
-        //
+        if($this->checkLen($points)){
+            //goto first element
+            reset($this->points);
+            //count
+            $this->closerSearch($this->points, key($this->points));
+        }
         return [implode($this->delimiter, $this->way), array_sum($this->dist)];   
     }
     
