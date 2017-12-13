@@ -47,7 +47,7 @@ class TravellProblem implements TravellInterface
      */
     public function go():array
     {
-        if($this->checkLen($points)){
+        if($this->checkLen($this->points)){
             //goto first element
             reset($this->points);
             //count
