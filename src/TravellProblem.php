@@ -33,7 +33,7 @@ class TravellProblem implements TravellInterface
      * @param void
      * @return this
      */
-    public function init(): TravellProblem 
+    public function init(): TravellInterface
     {
         $this->way = [];
         $this->dist = [];
