@@ -29,7 +29,7 @@ class TravellProblem implements TravellInterface
     protected $way = [];
     protected $dist = [];
     
-    /*
+    /**
      * @param void
      * @return this
      */
@@ -40,7 +40,7 @@ class TravellProblem implements TravellInterface
         return $this;
     }
     
-    /*
+    /**
      * @param void
      * @return array final result
      * @throws Exception from this->checkLen
@@ -65,7 +65,7 @@ class TravellProblem implements TravellInterface
         return [$this->way, $this->dist];
     }
     
-    /*
+    /**
      * @param array $dots 
      * @param mixed $start start key in array
      * @return void
@@ -104,7 +104,7 @@ class TravellProblem implements TravellInterface
         //
     }
     
-    /*
+    /**
      * @param array $a dots coord
      * @param array $b dots coord
      * @return float
@@ -119,7 +119,7 @@ class TravellProblem implements TravellInterface
         }     
     }
     
-    /*
+    /**
      * @param array $a dots coord
      * @param array $b dots coord
      * @return float 
@@ -129,7 +129,7 @@ class TravellProblem implements TravellInterface
         return sqrt(pow(abs($a[0] - $b[0]), 2) + pow(abs($a[1] - $b[1]), 2));      
     }
 
-    /*
+    /**
      * @param array $a dots coord
      * @param array $b dots coord
      * @author Михаил Кобзарев <mikhail@kobzarev.com>
@@ -159,7 +159,7 @@ class TravellProblem implements TravellInterface
         return $dist;
     }
     
-    /*
+    /**
      * @param void 
      * @param array $dots
      * @return bool true expected
@@ -173,7 +173,7 @@ class TravellProblem implements TravellInterface
         return true;
     }
     
-    /*
+    /**
      * @param array $points
      * @return bool 
      * @throws Exception from this->checkLen
@@ -187,7 +187,7 @@ class TravellProblem implements TravellInterface
         return false;
     }
     
-    /*
+    /**
      * @param string $delim
      * @return bool 
      */
@@ -200,7 +200,7 @@ class TravellProblem implements TravellInterface
         return false;
     }
     
-    /*
+    /**
      * @param void
      * @return bool 
      */
@@ -210,7 +210,7 @@ class TravellProblem implements TravellInterface
         return true;
     }
     
-    /*
+    /**
      * @param void
      * @return bool 
      */

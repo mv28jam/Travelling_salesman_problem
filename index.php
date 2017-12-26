@@ -8,8 +8,6 @@
 require_once ('./src/TravellInterface.php');
 require_once ('./src/TravellProblem.php');
 
-TravellProblem::EARTH_RADIUS;
-
 /*
 //create
 $way= (new TravellProblem)->init();
