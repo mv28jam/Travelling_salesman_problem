@@ -22,12 +22,11 @@ class TravellProblem implements TravellInterface
     protected $countFlat = false;
     //delim points name
     protected $delimiter = '/';
-    /*
-     * way array of points to go
-     * dist array od distance len =  len(way)-2
+    /**
+     * @var array $way  of points to go
+     * @var array $dist of distance len =  len(way)-2
      */
-    protected $way = [];
-    protected $dist = [];
+    protected $way = [], $dist = [];
     
     /**
      * @param void
